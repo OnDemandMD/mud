@@ -30,3 +30,10 @@ it 'should connect', connect (db, done)->
   (should db.urlInfo).be.ok()
   (should db.urlInfo.protocol).equal 'dummy:'
   done()
+
+it 'should perform an empty transaction', connect (db, done)->
+  db ->
+    return
+  , (err)->
+    (should err).not.be.ok()
+    done()
