@@ -18,6 +18,12 @@ it 'should not allow unregistered protocols', (done)->
     (should db).not.be.ok()
     done()
 
+it 'should properly handle connection errors', (done)->
+  mud.connect 'dummy://error', (err, db)->
+    (should err.message).equal 'unknown database: error'
+    (should db).not.be.ok()
+    done()
+
 it 'should connect', connect (db, done)->
   (should db).be.ok()
   (should db.protocol).equal dummyProtocol
