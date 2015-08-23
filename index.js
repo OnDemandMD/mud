@@ -19,7 +19,7 @@ var protocol = require('./lib/protocol');
 var generateDB = require('./lib/generator');
 var mud = module.exports = {};
 
-mud.protocol = {};
+mud.protocol = protocol.registry;
 
 mud.connect = function connect(connectionString, opts, cb) {
 	if (!cb) {
