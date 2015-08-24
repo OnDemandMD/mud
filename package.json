@@ -40,7 +40,7 @@
     "xo": "^0.6.1"
   },
   "dependencies": {
-    "eloquent": "github:qix-/eloquent",
+    "eloquent": "github:qix-/eloquent#0.4.0",
     "weak-inherit": "^0.1.1"
   }
 }

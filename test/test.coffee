@@ -37,3 +37,31 @@ it 'should perform an empty transaction', connect (db, done)->
   , (err)->
     (should err).not.be.ok()
     done()
+
+it 'should have a table length', connect (db, done)->
+  l = 0
+  db ->
+    l = @length
+  , (err)->
+    throw err if err
+    l.should.equal 1
+    done()
+
+it 'should have a table', connect (db, done)->
+  db ->
+    (should @zipcodes).be.ok()
+    (should @foobar).not.be.ok()
+  , (err)->
+    throw err if err
+    done()
+
+it 'should perform a simple select', connect (db, done)->
+  selected = []
+  db ->
+    # Get all zip codes
+    selected = @zipcodes.pluck.zip()
+  , (err)->
+    throw err if err
+    selected.length.should.equal 4999
+    # TODO actually check properties
+    done()
