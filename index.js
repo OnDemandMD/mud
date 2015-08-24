@@ -37,7 +37,7 @@ mud.connect = function connect(connectionString, opts, cb) {
 		db.protocol = protocol;
 		db.urlInfo = urlInfo;
 
-		db.protocol.connect(db, function (err) {
+		db.protocol.connect(db, opts, function (err) {
 			if (err) {
 				return cb(err);
 			}
