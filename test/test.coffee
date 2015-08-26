@@ -55,7 +55,7 @@ it 'should have a table', connect (db, done)->
     throw err if err
     done()
 
-it 'should perform a simple select', connect (db, done)->
+it 'should perform a simple select (zip)', connect (db, done)->
   selected = []
   db ->
     # Get all zip codes
@@ -63,5 +63,7 @@ it 'should perform a simple select', connect (db, done)->
   , (err)->
     throw err if err
     selected.length.should.equal 4999
-    # TODO actually check properties
+    selected[0].should.equal 501
+    selected.should.be.instanceOf Array
+    selected.slice(0, 1)[0].should.equal 501
     done()

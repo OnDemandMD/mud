@@ -32,6 +32,7 @@
     "url": "https://github.com/ondemandmd/mud.git"
   },
   "devDependencies": {
+    "clone-deep": "^0.2.2",
     "coffee-script": "^1.9.3",
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.17",
@@ -40,7 +41,9 @@
     "xo": "^0.6.1"
   },
   "dependencies": {
+    "async": "^1.4.2",
     "eloquent": "github:qix-/eloquent#0.4.0",
+    "emplace": "^0.3.1",
     "weak-inherit": "^0.1.1"
   }
 }
