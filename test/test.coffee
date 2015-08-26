@@ -58,7 +58,6 @@ it 'should have a table', connect (db, done)->
 it 'should perform a simple select (zip)', connect (db, done)->
   selected = []
   db ->
-    # Get all zip codes
     selected = @zipcodes.pluck.zip()
   , (err)->
     throw err if err
@@ -66,4 +65,22 @@ it 'should perform a simple select (zip)', connect (db, done)->
     selected[0].should.equal 501
     selected.should.be.instanceOf Array
     selected.slice(0, 1)[0].should.equal 501
+    done()
+
+it 'should perform a simple select (multiple results)', connect (db, done)->
+  zips = []
+  cities = []
+  db ->
+    zips = @zipcodes.pluck.zip()
+    cities = @zipcodes.pluck.city()
+  , (err)->
+    throw err if err
+    zips.length.should.equal 4999
+    zips[0].should.equal 501
+    zips.should.be.instanceOf Array
+    zips.slice(0, 1)[0].should.equal 501
+    cities.length.should.equal 4999
+    cities[0].should.equal 'Holtsville'
+    cities.should.be.instanceOf Array
+    cities.slice(0, 1)[0].should.equal 'Holtsville'
     done()
