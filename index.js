@@ -27,6 +27,14 @@ mud.connect = function connect(connectionString, opts, cb) {
 		opts = {};
 	}
 
+	if (!cb) {
+		cb = function (err) {
+			if (err) {
+				throw err;
+			}
+		};
+	}
+
 	var db = generateDB();
 
 	protocol.get(connectionString, function (err, protocol, urlInfo) {
