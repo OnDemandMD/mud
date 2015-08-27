@@ -84,3 +84,18 @@ it 'should perform a simple select (multiple results)', connect (db, done)->
     cities.should.be.instanceOf Array
     cities.slice(0, 1)[0].should.equal 'Holtsville'
     done()
+
+it 'should perform an async transaction', connect (db, done)->
+  zips = []
+  db (cb)->
+    setTimeout (=>
+      zips = @zipcodes.pluck.zip()
+      cb()
+    ), 0
+  , (err)->
+    throw err if err
+    zips.length.should.equal 4999
+    zips[0].should.equal 501
+    zips.should.be.instanceOf Array
+    zips.slice(0, 1)[0].should.equal 501
+    done()
